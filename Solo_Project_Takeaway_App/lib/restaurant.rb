@@ -1,6 +1,7 @@
 # File: lib/restaurant.rb
 
 class Restaurant
+
   def initialize
     @menu = ["#01 - Pizza - £10.50", "#02 - Chips - £5.00", "#03 - Hot Dog - £7.00", "#04 - Club Sandwich - £8.50"]
     @order = []
@@ -24,14 +25,17 @@ class Restaurant
   end
 
   def total
-   return @order.join(' ').gsub!('£', '').split(' ').map(&:to_f).sum
+   unformatted_total = @order.join(' ').gsub!('£', '').split(' ').map(&:to_f).sum
+   # calculates the total of the items on the order
+   formatted_total = "£" + "%.2f" % unformatted_total 
+   # gives total as currency to 2 decimal places
   end
 
   def bill
     fail "Please add at least one item to the order" unless @order.length > 0
     @bill << "ORDER:"
     @bill << @order
-    @bill << "TOTAL: £#{total}"
+    @bill << "TOTAL: #{total}"
     @bill.each do |item|
       puts item
     end
@@ -41,10 +45,11 @@ class Restaurant
 end
 
 =begin
+# Usage:
+# ===================
 test = Restaurant.new
 test.show_menu
 test.add(1)
 test.add(2)
-test.total
 test.bill
 =end

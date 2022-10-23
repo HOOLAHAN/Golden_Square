@@ -44,7 +44,7 @@ describe Restaurant do
       new_order = Restaurant.new
       new_order.add(1)
       new_order.add(2)
-      expect(new_order.total).to eq 15.5
+      expect(new_order.total).to eq "£15.50"
     end
   end
   context 'when the bill method is called' do
@@ -53,7 +53,7 @@ describe Restaurant do
       new_order = Restaurant.new
       new_order.add(1)
       new_order.add(2)
-      expect(new_order.bill).to eq ["ORDER:", ["#01 - Pizza - £10.50", "#02 - Chips - £5.00"], "TOTAL: £15.5"]
+      expect(new_order.bill).to eq ["ORDER:", ["#01 - Pizza - £10.50", "#02 - Chips - £5.00"], "TOTAL: £15.50"]
     end
   end
   context 'when the bill method is called with no items added to the order' do

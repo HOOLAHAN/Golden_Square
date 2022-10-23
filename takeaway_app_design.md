@@ -29,24 +29,20 @@ focus on the details you see as important, not everything. The diagram below
 uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com_
 
 ```
-┌────────────────────────────┐
-│ MusicPlayer                │
-│                            │
-│ - add(track)               │
-│ - all                      │
-│ - search_by_title(keyword) │
-│   => [tracks...]           │
-└───────────┬────────────────┘
-            │
-            │ owns a list of
-            ▼
 ┌─────────────────────────┐
-│ Track(title, artist)    │
+│ Restaurant              │
+│ - show menu             │
+│ - add(dish_number)      │
+│ - order                 │
+│ - total                 │
+│ - bill                  │
+└───────────┬─────────────┘
+┌─────────────────────────┐
+│ Twilio                  │
 │                         │
-│ - title                 │
-│ - artist                │
-│ - format                │
-│   => "TITLE by ARTIST"  │
+│ initialize (order)      |
+| complete_order          |
+| send_text(text_message) |
 └─────────────────────────┘
 ```
 
@@ -84,7 +80,7 @@ class Restaurant
 end
 
 class Twilio
-  def initialize(order) # order is an array - instance of Menu
+  def initialize(bill) # bill is an array - instance of Menu
   end
   def send(message)
     # sends text message using Twilio API
