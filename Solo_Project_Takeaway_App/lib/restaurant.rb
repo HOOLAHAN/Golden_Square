@@ -3,7 +3,7 @@
 class Restaurant
   def initialize
     # @menu = [["#1", "pizza", 10], ["#2", "chips", 5], ["#3", "hot dog", 7]]
-    @menu = ["#01 - pizza - £10.00", "#02 - chips - £5.00", "#03 - hot dog - £7.00"]
+    @menu = ["#01 - Pizza - £10.50", "#02 - Chips - £5.00", "#03 - Hot Dog - £7.00", "#04 - Club Sandwich - £8.50"]
     @order = []
   end
 
@@ -11,43 +11,36 @@ class Restaurant
     @menu.each do |item|
       puts item
     end
-
-    #@menu.each do |items|
-     # items.each do |number, item, price|
-        # print number, item, price, "\n"
-     # end
-    #end
   end
 
-  def add(dish_number) 
-    # write failing case for index with nil
+  def add(dish_number)
+    fail "Please choose a number from menu items 1 - 4" unless (dish_number.is_a? Integer) && dish_number > 0 && dish_number < @menu.length
     @order << @menu[dish_number - 1]
-    # pushes item from menu array to order array
-    # Returns nothing
+    # pushes chosen menu item to order array
   end
 
   def order
     return @order
-    # Returns order array
   end
 
   def total
-  #puts @order.map {|x| x[/\d+/]}
-  values = [] 
-  @order.join(' ').split(' ').each do |item|
-    item.delete unless item.include? ('£')
-  end
+   return @order.join(' ').gsub!('£', '').split(' ').map(&:to_f).sum
   end
 
   def bill
-
+    puts "ORDER:"
+    puts @order
+    puts "TOTAL: £#{total}"
     # prints order array with total at the bottom
   end
 
 end
 
+=begin
 test = Restaurant.new
 test.show_menu
 test.add(1)
 test.add(2)
 test.total
+test.bill
+=end
