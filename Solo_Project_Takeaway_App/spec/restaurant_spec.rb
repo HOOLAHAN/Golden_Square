@@ -48,12 +48,19 @@ describe Restaurant do
     end
   end
   context 'when the bill method is called' do
-    xit 'prints an itemised order with a total at the end' do
+    it 'prints an itemised order with a total at the end' do
       menu = Restaurant.new
       new_order = Restaurant.new
       new_order.add(1)
       new_order.add(2)
-      expect(new_order.bill).to eq 
+      expect(new_order.bill).to eq ["ORDER:", ["#01 - Pizza - £10.50", "#02 - Chips - £5.00"], "TOTAL: £15.5"]
+    end
+  end
+  context 'when the bill method is called with no items added to the order' do
+    it 'fails' do
+      menu = Restaurant.new
+      new_order = Restaurant.new
+      expect { new_order.bill }.to raise_error "Please add at least one item to the order"
     end
   end
 end

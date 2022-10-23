@@ -73,6 +73,10 @@ class Restaurant
     # Returns order array
   end
 
+  def total
+    #returns the sum of the items on the order array
+  end
+
   def bill
     # prints order array with total at the bottom
   end

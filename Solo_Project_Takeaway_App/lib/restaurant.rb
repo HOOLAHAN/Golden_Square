@@ -2,9 +2,9 @@
 
 class Restaurant
   def initialize
-    # @menu = [["#1", "pizza", 10], ["#2", "chips", 5], ["#3", "hot dog", 7]]
     @menu = ["#01 - Pizza - £10.50", "#02 - Chips - £5.00", "#03 - Hot Dog - £7.00", "#04 - Club Sandwich - £8.50"]
     @order = []
+    @bill = []
   end
 
   def show_menu
@@ -28,10 +28,14 @@ class Restaurant
   end
 
   def bill
-    puts "ORDER:"
-    puts @order
-    puts "TOTAL: £#{total}"
-    # prints order array with total at the bottom
+    fail "Please add at least one item to the order" unless @order.length > 0
+    @bill << "ORDER:"
+    @bill << @order
+    @bill << "TOTAL: £#{total}"
+    @bill.each do |item|
+      puts item
+    end
+    # prints the itemised bill with total at the bottom
   end
 
 end
