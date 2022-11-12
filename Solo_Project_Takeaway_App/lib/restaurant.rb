@@ -1,5 +1,7 @@
 # File: lib/restaurant.rb
 
+require_relative './twilio'
+
 class Restaurant
 
   def initialize
@@ -42,14 +44,19 @@ class Restaurant
     # prints the itemised bill with total at the bottom
   end
 
+  def send_sms_confirmation
+    twilio = TwilioMessage.new
+    twilio.complete_order
+  end
+
 end
 
-=begin
+
 # Usage:
-# ===================
-test = Restaurant.new
-test.show_menu
-test.add(1)
-test.add(2)
-test.bill
-=end
+# ===============================
+# test = Restaurant.new
+# test.show_menu
+# test.add(1)
+# test.add(2)
+# test.bill
+# test.send_sms_confirmation
